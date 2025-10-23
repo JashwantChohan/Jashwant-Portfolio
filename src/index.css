@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import "tailwindcss";
+
+/* Custom theme */
+@theme {
+  --color-primary: #0D1824;
+  --color-secondary: #111C2E;
+  --color-card: #1A2537;
+
+  --color-accent: #FF6B35;
+  --color-accent-hover: #f07665;
+
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B0B8C1;
+
+  --color-border: #f28b78;
+}
+
+:root {
+  font-family: 'Sora', sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+}
