@@ -86,7 +86,7 @@ function Projects() {
 
             <div className="flex gap-4">
               <a
-                href="https://github.com/JashwantChohan/Hospital-Management-System"
+                href="https://github.com/JashwantChohan/Prescripto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white px-5 py-2 rounded-md font-medium hover:opacity-90 transition"
@@ -94,7 +94,7 @@ function Projects() {
                 View GitHub
               </a>
               <a
-                href="https://hospital-management-system-three-psi.vercel.app/"
+                href="https://prescripto-zeta-two.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[--color-accent] font-medium border-b-2 border-[--color-accent] hover:opacity-80 transition "
@@ -157,12 +157,12 @@ function Projects() {
           </div>
         </div>
 
-        {/* Second Project */}
+        {/* Forth Project */}
         <div className="Project-Card flex flex-col md:flex-row-reverse items-center mt-20 justify-around gap-10">
           <div className="Right-Content flex-1">
-            <h3 className="text-2xl font-semibold mb-4">Hopital Management System</h3>
+            <h3 className="text-2xl font-semibold mb-4">AI Chatbot</h3>
             <div className="flex flex-wrap gap-3 mb-4">
-              {["MERN Stack", "MongoDB", "Express", "React", "Node.js"].map((tech) => (
+              {["HTML", "CSS", "JS", "GEMINI API"].map((tech) => (
                 <span
                   key={tech}
                   className="bg-[#1f2a3c]/60 text-[--color-text-secondary] px-4 py-1.5 rounded-full text-sm border border-[#2c3a52] backdrop-blur-sm"
@@ -204,6 +204,55 @@ function Projects() {
             />
           </div>
         </div>
+
+        {/* Fifth Project */}
+        <div className="Project-Card flex flex-col md:flex-row items-center justify-around gap-10 mt-20">
+          <div className="Left-Content flex-1">
+            <h3 className="text-2xl font-semibold mb-4">Pitch Craft</h3>
+            <div className="flex flex-wrap gap-3 mb-4">
+              {["React", "YouTube Data API", "React Router"].map((tech) => (
+                <span
+                  key={tech}
+                  className="bg-[#1f2a3c]/60 text-[--color-text-secondary] px-4 py-1.5 rounded-full text-sm border border-[#2c3a52] backdrop-blur-sm"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            <p className="text-[--color-text-secondary] leading-relaxed mb-6">
+              Built a fully responsive eCommerce homepage collection using React and Framer Motion. It features dynamic sliders, interactive galleries, and stylish predesigned inner pages to launch online stores quickly and efficiently.
+            </p>
+
+            <div className="flex gap-4">
+              <a
+                href="https://github.com/JashwantChohan/PitchCraft"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white px-5 py-2 rounded-[2px] font-medium hover:opacity-90 transition"
+              >
+                View GitHub
+              </a>
+              <a
+                href="https://pitch-craft-beta.vercel.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[--color-accent] font-medium border-b-2 border-[--color-accent] hover:opacity-80 transition"
+              >
+                View Project →
+              </a>
+            </div>
+          </div>
+
+          <div className="Right-Image flex-1">
+            <img
+              src="/pitchCraft.png"
+              alt="YouTube Clone preview"
+              className="rounded-lg border border-[--color-border] shadow-lg"
+            />
+          </div>
+        </div>
+
       </div>
     </section>
 
