@@ -19,18 +19,18 @@
 
 /* Dark theme */
 .dark {
-  --color-primary: #09090B;
-  --color-secondary: #18181B;
-  --color-card: #27272A;
+  --color-primary: #3C3C3C;
+  --color-secondary: #444444;
+  --color-card: #4A4A4A;
 
   --color-accent: #3B82F6;
   --color-accent-hover: #2563EB;
 
-  --color-text-primary: #FAFAFA;
-  --color-text-secondary: #A1A1AA;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #D1D5DB;
 
-  --color-border: #27272A;
-  --color-border-light: #3F3F46;
+  --color-border: rgba(255, 255, 255, 0.15);
+  --color-border-light: rgba(255, 255, 255, 0.25);
 }
 
 html,
