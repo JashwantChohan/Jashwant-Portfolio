@@ -1,264 +1,223 @@
+import { motion } from "framer-motion";
+import { ExternalLink, Github } from "lucide-react";
 import ProjectSlideshow from "./ProjectSlideshow.jsx";
+import { AnimatedSection } from "../animations/index.jsx";
+import {
+  staggerContainer,
+  staggerItem,
+  buttonScale,
+} from "../animations/variants.js";
 
+const projects = [
+  {
+    title: "YouTube Clone",
+    tech: ["React", "YouTube Data API", "React Router"],
+    desc: "Built a YouTube clone using React and the YouTube Data API. It supports real-time video data, search functionality, and clean dynamic routing for video pages.",
+    github: "https://github.com/JashwantChohan/Youtube_Clone",
+    live: "https://youtube-clone-six-omega-10.vercel.app",
+    img: "/youtube_clone_shot.png",
+    reverse: false,
+  },
+  {
+    title: "Hopital Management System",
+    tech: ["MERN Stack", "MongoDB", "Express", "React", "Node.js"],
+    desc: "Developed a Hospital Management System (HMS) to manage patients, doctors, and appointments efficiently. The system allows users to book appointments, view doctor details, and manage hospital data through a clean and responsive interface.",
+    github: "https://github.com/JashwantChohan/Prescripto",
+    live: "https://prescripto-zeta-two.vercel.app/",
+    slideshow: true,
+    reverse: true,
+  },
+  {
+    title: "eCommerce homepage",
+    tech: ["React", "YouTube Data API", "React Router"],
+    desc: "Built a fully responsive eCommerce homepage collection using React and Framer Motion. It features dynamic sliders, interactive galleries, and stylish predesigned inner pages to launch online stores quickly and efficiently.",
+    github: "https://github.com/JashwantChohan/eCommerce-homepage",
+    live: "https://depot-beige.vercel.app",
+    img: "/Depot.png",
+    reverse: false,
+  },
+  {
+    title: "AI Chatbot",
+    tech: ["HTML", "CSS", "JS", "GEMINI API"],
+    desc: "Developed an AI Chatbot that can respond to user queries, handle file uploads, and support emojis — all through a clean and interactive UI. It uses the Gemini API for intelligent responses and is built with modern JavaScript and modular structure.",
+    github: "https://github.com/JashwantChohan/AI-Chatbot",
+    live: "https://ai-chatbot-green-nine.vercel.app",
+    img: "/ai-chatbot.png",
+    reverse: true,
+  },
+  {
+    title: "Pitch Craft",
+    tech: ["React", "YouTube Data API", "React Router"],
+    desc: "Built a fully responsive eCommerce homepage collection using React and Framer Motion. It features dynamic sliders, interactive galleries, and stylish predesigned inner pages to launch online stores quickly and efficiently.",
+    github: "https://github.com/JashwantChohan/PitchCraft",
+    live: "https://pitch-craft-beta.vercel.app",
+    img: "/pitchCraft.png",
+    reverse: false,
+  },
+];
+
+function ProjectCard({ project, index }) {
+  const { title, tech, desc, github, live, img, slideshow, reverse } = project;
+
+  const media = slideshow ? (
+    <div className="flex-1">
+      <ProjectSlideshow />
+    </div>
+  ) : (
+    <div className={reverse ? "left-Image flex-1" : "Right-Image flex-1"}>
+      <motion.div
+        className="relative overflow-hidden rounded-xl bg-[--color-secondary] border border-[#2c3a52] group"
+        whileHover="hover"
+      >
+        <motion.img
+          src={img}
+          alt={`${title} preview`}
+          className="w-full h-full object-cover"
+          variants={{
+            rest: { scale: 1 },
+            hover: { scale: 1.06, transition: { duration: 0.5, ease: "easeOut" } },
+          }}
+        />
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-t from-[--color-primary]/80 via-transparent to-transparent"
+          variants={{
+            rest: { opacity: 0 },
+            hover: { opacity: 1, transition: { duration: 0.3 } },
+          }}
+        />
+        <motion.div
+          className="absolute bottom-4 right-4 flex gap-2"
+          variants={{
+            rest: { opacity: 0, y: 10 },
+            hover: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+          }}
+        >
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+            aria-label="View source code"
+          >
+            <Github size={18} className="text-white" />
+          </a>
+          <a
+            href={live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-colors"
+            aria-label="View live project"
+          >
+            <ExternalLink size={18} className="text-white" />
+          </a>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+
+  return (
+    <motion.div
+      className={`flex flex-col md:flex-row items-center gap-8 md:gap-12 ${
+        index > 0 ? "mt-24" : ""
+      }`}
+      variants={staggerItem}
+    >
+      <div
+        className={`flex-1 space-y-5 ${
+          reverse ? "md:order-2" : "md:order-1"
+        }`}
+      >
+        <h3 className="text-2xl md:text-3xl font-bold text-white">
+          {title}
+        </h3>
+
+        <div className="flex flex-wrap gap-2">
+          {tech.map((t) => (
+            <span
+              key={t}
+              className="px-3 py-1 text-xs font-medium rounded-full bg-gradient-to-r from-[#f07665]/10 to-[#f28b78]/10 text-[--color-accent] border border-[--color-accent]/30 backdrop-blur-sm hover:bg-[--color-accent]/20 transition-colors duration-200"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+
+        <p className="text-[--color-text-secondary] leading-relaxed text-base">
+          {desc}
+        </p>
+
+        <div className="flex gap-4 pt-2">
+          <motion.a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white px-5 py-2.5 rounded-lg font-medium text-sm shadow-lg shadow-[--color-accent]/20"
+            variants={buttonScale}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
+          >
+            <Github size={16} />
+            View GitHub
+          </motion.a>
+          <motion.a
+            href={live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-[--color-accent] font-medium text-sm border border-[--color-accent]/50 px-5 py-2.5 rounded-lg hover:bg-[--color-accent]/10 transition-colors duration-200"
+            variants={buttonScale}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
+          >
+            <ExternalLink size={16} />
+            View Project
+          </motion.a>
+        </div>
+      </div>
+
+      <div className={`flex-1 w-full ${reverse ? "md:order-1" : "md:order-2"}`}>
+        {media}
+      </div>
+    </motion.div>
+  );
+}
 
 function Projects() {
   return (
+    <AnimatedSection
+      id="projects"
+      className="py-20 bg-[--color-primary] text-[--color-text-primary]"
+    >
+      <div className="container mx-auto px-6 md:px-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-4xl font-bold mb-4">
+            <span className="text-[--color-accent]">Projects</span>
+          </h2>
+          <p className="text-[--color-text-secondary] max-w-2xl mx-auto">
+            Real-world applications built from the ground up — from concept to deployment.
+          </p>
+        </motion.div>
 
-    <section id="projects" className="py-20 bg-[--color-bg-primary] text-[--color-text-primary]">
-      <div className="container mx-auto px-5">
-
-        <div className="Header text-center mb-16 relative flex flex-col items-center">
-          <h2 className="text-4xl font-bold mb-6">Projects</h2>
-
-          <div className="relative flex flex-col items-center">
-
-            <div className="Line w-[2px] h-12 bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665]"></div>
-            <div className="Dot absolute top-15 w-2 h-2 rounded-full bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665]"></div>
-          </div>
-        </div>
-
-        {/* First Project */}
-        <div className="Project-Card flex flex-col md:flex-row items-center justify-around gap-10 mb-20">
-          <div className="Left-Content flex-1">
-            <h3 className="text-2xl font-semibold mb-4">YouTube Clone</h3>
-            <div className="flex flex-wrap gap-3 mb-4">
-              {["React", "YouTube Data API", "React Router"].map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-[#1f2a3c]/60 text-[--color-text-secondary] px-4 py-1.5 rounded-full text-sm border border-[#2c3a52] backdrop-blur-sm"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <p className="text-[--color-text-secondary] leading-relaxed mb-6">
-              Built a YouTube clone using React and the YouTube Data API. It supports real-time video data, search functionality, and clean dynamic routing for video pages.
-            </p>
-
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/JashwantChohan/Youtube_Clone"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white px-5 py-2 rounded-[2px] font-medium hover:opacity-90 transition"
-              >
-                View GitHub
-              </a>
-              <a
-                href="https://youtube-clone-six-omega-10.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[--color-accent] font-medium border-b-2 border-[--color-accent] hover:opacity-80 transition"
-              >
-                View Project →
-              </a>
-            </div>
-          </div>
-
-          <div className="Right-Image flex-1">
-            <img
-              src="/youtube_clone_shot.png"
-              alt="YouTube Clone preview"
-              className="rounded-lg border border-[--color-border] shadow-lg"
-            />
-          </div>
-        </div>
-
-        {/* Second Project */}
-        <div className="Project-Card flex flex-col md:flex-row-reverse items-center justify-around gap-10">
-          <div className="Right-Content flex-1">
-            <h3 className="text-2xl font-semibold mb-4">Hopital Management System</h3>
-            <div className="flex flex-wrap gap-3 mb-4">
-              {["MERN Stack", "MongoDB", "Express", "React", "Node.js"].map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-[#1f2a3c]/60 text-[--color-text-secondary] px-4 py-1.5 rounded-full text-sm border border-[#2c3a52] backdrop-blur-sm"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <p className="text-[--color-text-secondary] leading-relaxed mb-6">
-              Developed a Hospital Management System (HMS) to manage patients, doctors, and appointments efficiently. The system allows users to book appointments, view doctor details, and manage hospital data through a clean and responsive interface.
-            </p>
-
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/JashwantChohan/Prescripto"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white px-5 py-2 rounded-md font-medium hover:opacity-90 transition"
-              >
-                View GitHub
-              </a>
-              <a
-                href="https://prescripto-zeta-two.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[--color-accent] font-medium border-b-2 border-[--color-accent] hover:opacity-80 transition "
-              >
-                View Project →
-              </a>
-            </div>
-          </div>
-
-          <div className="left-Image flex-1">
-            <ProjectSlideshow />
-          </div>
-        </div>
-
-        {/* Third Project */}
-        <div className="Project-Card flex flex-col md:flex-row items-center justify-around gap-10 mt-20">
-          <div className="Left-Content flex-1">
-            <h3 className="text-2xl font-semibold mb-4">eCommerce homepage</h3>
-            <div className="flex flex-wrap gap-3 mb-4">
-              {["React", "YouTube Data API", "React Router"].map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-[#1f2a3c]/60 text-[--color-text-secondary] px-4 py-1.5 rounded-full text-sm border border-[#2c3a52] backdrop-blur-sm"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <p className="text-[--color-text-secondary] leading-relaxed mb-6">
-              Built a fully responsive eCommerce homepage collection using React and Framer Motion. It features dynamic sliders, interactive galleries, and stylish predesigned inner pages to launch online stores quickly and efficiently.
-            </p>
-
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/JashwantChohan/eCommerce-homepage"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white px-5 py-2 rounded-[2px] font-medium hover:opacity-90 transition"
-              >
-                View GitHub
-              </a>
-              <a
-                href="https://depot-beige.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[--color-accent] font-medium border-b-2 border-[--color-accent] hover:opacity-80 transition"
-              >
-                View Project →
-              </a>
-            </div>
-          </div>
-
-          <div className="Right-Image flex-1">
-            <img
-              src="/Depot.png"
-              alt="YouTube Clone preview"
-              className="rounded-lg border border-[--color-border] shadow-lg"
-            />
-          </div>
-        </div>
-
-        {/* Forth Project */}
-        <div className="Project-Card flex flex-col md:flex-row-reverse items-center mt-20 justify-around gap-10">
-          <div className="Right-Content flex-1">
-            <h3 className="text-2xl font-semibold mb-4">AI Chatbot</h3>
-            <div className="flex flex-wrap gap-3 mb-4">
-              {["HTML", "CSS", "JS", "GEMINI API"].map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-[#1f2a3c]/60 text-[--color-text-secondary] px-4 py-1.5 rounded-full text-sm border border-[#2c3a52] backdrop-blur-sm"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <p className="text-[--color-text-secondary] leading-relaxed mb-6">
-              Developed an AI Chatbot that can respond to user queries, handle file uploads, and support emojis — all through a clean and interactive UI. It uses the Gemini API for intelligent responses and is built with modern JavaScript and modular structure.
-            </p>
-
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/JashwantChohan/AI-Chatbot"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white px-5 py-2 rounded-md font-medium hover:opacity-90 transition"
-              >
-                View GitHub
-              </a>
-              <a
-                href="https://ai-chatbot-green-nine.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[--color-accent] font-medium border-b-2 border-[--color-accent] hover:opacity-80 transition "
-              >
-                View Project →
-              </a>
-            </div>
-          </div>
-
-          <div className="Right-Image flex-1">
-            <img
-              src="/ai-chatbot.png"
-              alt="YouTube Clone preview"
-              className="rounded-lg border border-[--color-border] shadow-lg"
-            />
-          </div>
-        </div>
-
-        {/* Fifth Project */}
-        <div className="Project-Card flex flex-col md:flex-row items-center justify-around gap-10 mt-20">
-          <div className="Left-Content flex-1">
-            <h3 className="text-2xl font-semibold mb-4">Pitch Craft</h3>
-            <div className="flex flex-wrap gap-3 mb-4">
-              {["React", "YouTube Data API", "React Router"].map((tech) => (
-                <span
-                  key={tech}
-                  className="bg-[#1f2a3c]/60 text-[--color-text-secondary] px-4 py-1.5 rounded-full text-sm border border-[#2c3a52] backdrop-blur-sm"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-
-            <p className="text-[--color-text-secondary] leading-relaxed mb-6">
-              Built a fully responsive eCommerce homepage collection using React and Framer Motion. It features dynamic sliders, interactive galleries, and stylish predesigned inner pages to launch online stores quickly and efficiently.
-            </p>
-
-            <div className="flex gap-4">
-              <a
-                href="https://github.com/JashwantChohan/PitchCraft"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white px-5 py-2 rounded-[2px] font-medium hover:opacity-90 transition"
-              >
-                View GitHub
-              </a>
-              <a
-                href="https://pitch-craft-beta.vercel.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[--color-accent] font-medium border-b-2 border-[--color-accent] hover:opacity-80 transition"
-              >
-                View Project →
-              </a>
-            </div>
-          </div>
-
-          <div className="Right-Image flex-1">
-            <img
-              src="/pitchCraft.png"
-              alt="YouTube Clone preview"
-              className="rounded-lg border border-[--color-border] shadow-lg"
-            />
-          </div>
-        </div>
-
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {projects.map((project, i) => (
+            <ProjectCard key={project.title} project={project} index={i} />
+          ))}
+        </motion.div>
       </div>
-    </section>
-
-
-
-  )
+    </AnimatedSection>
+  );
 }
 
-export default Projects
+export default Projects;

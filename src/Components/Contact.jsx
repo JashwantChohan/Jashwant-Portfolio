@@ -1,6 +1,14 @@
 "use client";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
+import { motion, AnimatePresence } from "framer-motion";
+import { AnimatedSection } from "../animations/index.jsx";
+import {
+  slideInLeft,
+  slideInRight,
+  staggerItem,
+  buttonScale,
+} from "../animations/variants.js";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -45,12 +53,12 @@ export default function ContactSection() {
   };
 
   return (
-    <section
+    <AnimatedSection
       id="contact"
       className="py-24 bg-[--color-bg-primary] text-[--color-text-primary]"
     >
       <div className="max-w-6xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-12 items-center">
-        <div className=" Left-Side ">
+        <motion.div className="Left-Side" variants={slideInLeft}>
           <h1 className="text-[--color-accent] tracking-wide mb-2">
             Contacts
           </h1>
@@ -65,56 +73,69 @@ export default function ContactSection() {
             open to connecting!
           </p>
 
-          <button
+          <motion.button
             type="submit"
             form="contactForm"
-            className="px-8 py-3 rounded-md bg-linear-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white font-medium hover:opacity-90 transition-all duration-300"
+            className="px-8 py-3 rounded-md bg-linear-to-b from-[#f07665] via-[#f28b78] to-[#f07665] text-white font-medium"
+            variants={buttonScale}
+            initial="rest"
+            whileHover="hover"
+            whileTap="tap"
           >
             Submit
-          </button>
+          </motion.button>
 
-          {status && (
-            <p className="mt-4 text-sm text-[--color-text-secondary]">
-              {status}
-            </p>
-          )}
-        </div>
+          <AnimatePresence>
+            {status && (
+              <motion.p
+                className="mt-4 text-sm text-[--color-text-secondary]"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3 }}
+              >
+                {status}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </motion.div>
 
-        {/* Right Side - Form */}
-        <form
+        <motion.form
           id="contactForm"
           onSubmit={handleSubmit}
           className="flex flex-col space-y-6"
+          variants={slideInRight}
         >
-          <div>
-            <label className="block text-sm text-[--color-text-secondary] mb-2">
-              Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full bg-transparent border-b border-gray-500 focus:border-[#f07665] outline-none py-2 text-[--color-text-primary]"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm text-[--color-text-secondary] mb-2">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full bg-transparent border-b border-gray-500 focus:border-[#f07665] outline-none py-2 text-[--color-text-primary]"
-            />
-          </div>
-
-          <div>
+          {[
+            { label: "Name", name: "name", type: "text" },
+            { label: "Email", name: "email", type: "email" },
+          ].map(({ label, name, type }) => (
+            <motion.div
+              key={name}
+              variants={staggerItem}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <label className="block text-sm text-[--color-text-secondary] mb-2">
+                {label}
+              </label>
+              <input
+                type={type}
+                name={name}
+                value={formData[name]}
+                onChange={handleChange}
+                required
+                className="w-full bg-transparent border-b border-gray-500 focus:border-[#f07665] outline-none py-2 text-[--color-text-primary] transition-colors duration-300"
+              />
+            </motion.div>
+          ))}
+          <motion.div
+            variants={staggerItem}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
             <label className="block text-sm text-[--color-text-secondary] mb-2">
               Message
             </label>
@@ -124,11 +145,11 @@ export default function ContactSection() {
               onChange={handleChange}
               required
               rows="4"
-              className="w-full bg-transparent border-b border-gray-500 focus:border-[#f07665] outline-none py-2 resize-none text-[--color-text-primary]"
+              className="w-full bg-transparent border-b border-gray-500 focus:border-[#f07665] outline-none py-2 resize-none text-[--color-text-primary] transition-colors duration-300"
             ></textarea>
-          </div>
-        </form>
+          </motion.div>
+        </motion.form>
       </div>
-    </section>
+    </AnimatedSection>
   );
 }
