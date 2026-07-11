@@ -3,12 +3,19 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="" type="" href="/my-portfolio/src/assets/hero.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="/my-portfolio/src/assets/hero.png" rel="stylesheet">
+  <title>Jashwant Chohan — Portfolio</title>
+  <meta name="description" content="Portfolio of Jashwant Chohan — Full-Stack Developer specializing in React, Node.js, and modern web applications." />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
-
-  <title>Jashwant_Chohan_Portfolio</title>
+  <script>
+    (function () {
+      var theme = localStorage.getItem("theme");
+      if (!theme) {
+        theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      }
+      document.documentElement.classList.add(theme);
+    })();
+  </script>
 </head>
 
 <body>

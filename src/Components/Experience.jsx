@@ -18,7 +18,7 @@ const experiences = [
       "Collaborated cross-functionally with senior engineers to debug, test, and improve application updates while maintaining stability across production releases.",
       "Strengthened expertise in React, Node.js, REST APIs, database design, Git, and collaborative software development workflows while contributing to a real production codebase.",
     ],
-    technologies: ["React", "Node.js", "Express.js", "REST APIs", "MongoDB", "Git", "JavaScript", "Tailwind CSS"],
+    technologies: ["React", "Node.js", "Express.js", "REST APIs", "MongoDB", "Docker", "Git", "JavaScript", "TypeScript", "Tailwind CSS"],
   },
 ];
 
@@ -26,7 +26,7 @@ export default function Experience() {
   return (
     <AnimatedSection
       id="experience"
-      className="py-20 bg-[--color-primary] text-[--color-text-primary]"
+      className="py-20 bg-[--color-secondary] text-[--color-text-primary]"
     >
       <div className="max-w-4xl mx-auto px-6 md:px-10">
         <motion.div
@@ -45,7 +45,7 @@ export default function Experience() {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665]" />
+          <div className="absolute left-[19px] md:left-[23px] top-0 bottom-0 w-px bg-[--color-border]" />
 
           <motion.div
             className="space-y-12"
@@ -60,20 +60,20 @@ export default function Experience() {
                 className="relative pl-12 md:pl-14"
                 variants={staggerItem}
               >
-                <div className="absolute left-2.5 md:left-3 top-1 w-4 h-4 rounded-full bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665] shadow-[0_0_8px_rgba(255,107,53,0.6)]" />
+                <div className="absolute left-2.5 md:left-3 top-1 w-4 h-4 rounded-full bg-[--color-accent] ring-4 ring-[--color-secondary]" />
 
                 <motion.div
-                  className="bg-[--color-secondary] rounded-2xl p-6 md:p-8 border border-[#2c3a52] hover:border-[--color-accent]/50 transition-colors duration-300 shadow-lg"
-                  whileHover={{ y: -4 }}
+                  className="bg-[--color-primary] rounded-xl p-6 md:p-8 border border-[--color-border] hover:border-[--color-accent]/30 transition-colors duration-300"
+                  whileHover={{ y: -2 }}
                   transition={{ duration: 0.3 }}
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="hidden md:flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-b from-[#f07665]/20 to-[#f28b78]/20 border border-[--color-accent]/30 shrink-0">
-                      <exp.icon className="text-[--color-accent]" size={24} />
+                    <div className="hidden md:flex items-center justify-center w-11 h-11 rounded-lg bg-[--color-accent]/10 shrink-0">
+                      <exp.icon className="text-[--color-accent]" size={20} />
                     </div>
 
                     <div className="flex-1 min-w-0">
-                      <h3 className="text-xl md:text-2xl font-bold text-white mb-1">
+                      <h3 className="text-xl md:text-2xl font-bold text-[--color-text-primary] mb-1">
                         {exp.role}
                       </h3>
                       <p className="text-[--color-accent] font-medium text-base">
@@ -88,7 +88,7 @@ export default function Experience() {
 
                   <ul className="space-y-3 mb-6">
                     {exp.description.map((point, i) => (
-                      <li key={i} className="flex items-start gap-2 text-[--color-text-secondary] leading-relaxed">
+                      <li key={i} className="flex items-start gap-2 text-[--color-text-secondary] leading-relaxed text-sm">
                         <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[--color-accent] shrink-0" />
                         <span>{point}</span>
                       </li>
@@ -99,7 +99,7 @@ export default function Experience() {
                     {exp.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 text-xs font-medium rounded-full bg-[#1f2a3c]/60 text-[--color-text-secondary] border border-[#2c3a52] backdrop-blur-sm hover:border-[--color-accent]/50 hover:text-[--color-accent] transition-colors duration-200"
+                        className="px-3 py-1 text-xs font-medium rounded-full bg-[--color-secondary] text-[--color-text-secondary] border border-[--color-border] hover:border-[--color-accent]/50 hover:text-[--color-accent] transition-colors duration-200"
                       >
                         {tech}
                       </span>

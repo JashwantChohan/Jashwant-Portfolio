@@ -80,9 +80,9 @@ export const slideInRight = {
 export const floating = {
   hidden: { y: 0 },
   visible: {
-    y: [0, -8, 0],
+    y: [0, -10, 0],
     transition: {
-      duration: 4,
+      duration: 7,
       repeat: Infinity,
       ease: "easeInOut",
     },

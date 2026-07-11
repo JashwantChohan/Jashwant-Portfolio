@@ -21,7 +21,7 @@ const ProjectSlideshow = () => {
 
   return (
     <div className="relative w-full flex-1">
-      <div className="relative overflow-hidden rounded-lg border border-[#f07665]/50">
+      <div className="relative overflow-hidden rounded-xl border border-[--color-border]">
         <AnimatePresence mode="wait">
           <motion.img
             key={current}
@@ -41,7 +41,7 @@ const ProjectSlideshow = () => {
           <motion.span
             key={index}
             className={`w-2 h-2 rounded-full cursor-pointer ${
-              index === current ? "bg-[#f07665]" : "bg-[#f07665]/40"
+              index === current ? "bg-[--color-accent]" : "bg-[--color-accent]/40"
             }`}
             whileHover={{ scale: 1.5 }}
             onClick={() => setCurrent(index)}

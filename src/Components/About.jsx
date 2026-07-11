@@ -19,15 +19,13 @@ export default function About() {
   return (
     <AnimatedSection
       id="about"
-      className="bg-[--color-primary] text-[--color-text-primary] py-20 px-6 md:px-16"
+      className="bg-[--color-secondary] text-[--color-text-primary] py-20 px-6 md:px-16"
     >
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
         <motion.div
-          className="Left-Side relative border-l-2 border-[--color-accent] pl-8 space-y-10"
+          className="relative border-l-2 border-[--color-accent] pl-8 space-y-10"
           variants={slideInLeft}
         >
-          <div className="absolute top-2 left-[-7px] w-3 h-3 bg-[--color-accent] rounded-full bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665]"></div>
-
           {services.map(({ icon: Icon, label }, i) => (
             <motion.div
               key={label}
@@ -38,18 +36,16 @@ export default function About() {
               viewport={{ once: true }}
               custom={i}
             >
-              <Icon className="text-[--color-accent] text-3xl" />
+              <div className="w-10 h-10 rounded-lg bg-[--color-accent]/10 flex items-center justify-center shrink-0">
+                <Icon className="text-[--color-accent] text-lg" />
+              </div>
               <p className="text-lg font-medium">{label}</p>
             </motion.div>
           ))}
-
-          <div className="absolute top-20 left-[-7px] w-3 h-3 bg-[--color-accent] rounded-full bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665]"></div>
-
-          <div className="absolute top-37 left-[-7px] w-3 h-3 bg-[--color-accent] rounded-full bg-gradient-to-b from-[#f07665] via-[#f28b78] to-[#f07665]"></div>
         </motion.div>
 
         <motion.div variants={slideInRight}>
-          <h2 className="Right-Side text-3xl md:text-4xl font-heading font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
             About <span className="text-[--color-accent]">me</span>
           </h2>
           <motion.p
@@ -72,7 +68,7 @@ export default function About() {
             {[
               { value: "10", suffix: "+", label: "Projects Completed" },
               { value: "6", suffix: "+", label: "Months Professional Experience" },
-              { value: null, suffix: null, label: "Full-Stack Development Intern" },
+              { value: null, suffix: null, label: "Full-Stack Development" },
             ].map((stat) => (
               <motion.div key={stat.label} variants={staggerItem}>
                 {stat.value !== null ? (

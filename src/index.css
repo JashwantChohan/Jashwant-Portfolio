@@ -1,29 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
-/* Custom theme */
-@theme {
-  --color-primary: #0D1824;
-  --color-secondary: #111C2E;
-  --color-card: #1A2537;
+/* Light theme (default) */
+:root {
+  --color-primary: #FFFFFF;
+  --color-secondary: #F4F4F5;
+  --color-card: #FAFAFA;
 
-  --color-accent: #FF6B35;
-  --color-accent-hover: #f07665;
+  --color-accent: #2563EB;
+  --color-accent-hover: #1D4ED8;
 
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #B0B8C1;
+  --color-text-primary: #09090B;
+  --color-text-secondary: #71717A;
 
-  --color-border: #f28b78;
+  --color-border: #E4E4E7;
+  --color-border-light: #D4D4D8;
 }
 
-:root {
-  font-family: 'Sora', sans-serif;
+/* Dark theme */
+.dark {
+  --color-primary: #09090B;
+  --color-secondary: #18181B;
+  --color-card: #27272A;
+
+  --color-accent: #3B82F6;
+  --color-accent-hover: #2563EB;
+
+  --color-text-primary: #FAFAFA;
+  --color-text-secondary: #A1A1AA;
+
+  --color-border: #27272A;
+  --color-border-light: #3F3F46;
+}
+
+html,
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 h1,
 h2,
 h3 {
   font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #ffffff;
 }
 
 @media (prefers-reduced-motion: reduce) {
