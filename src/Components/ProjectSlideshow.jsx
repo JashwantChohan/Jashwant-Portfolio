@@ -22,18 +22,21 @@ const ProjectSlideshow = () => {
   return (
     <div className="relative w-full flex-1">
       <div className="relative overflow-hidden rounded-xl border border-[--color-border]">
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={current}
-            src={images[current]}
-            alt={`HMS Screenshot ${current + 1}`}
-            className="w-full"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          />
-        </AnimatePresence>
+        <div className="relative aspect-video w-full">
+          <AnimatePresence initial={false}>
+            {images.map((image, index) => (
+              <motion.img
+                key={image}
+                src={image}
+                alt={`HMS Screenshot ${index + 1}`}
+                className="absolute inset-0 h-full w-full object-contain"
+                initial={false}
+                animate={{ opacity: index === current ? 1 : 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+              />
+            ))}
+          </AnimatePresence>
+        </div>
       </div>
 
       <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-2">
